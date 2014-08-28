@@ -1,0 +1,280 @@
+@import 'compass';
+@import 'compass/reset';
+
+// Colors
+$primary : #33b5e0;
+$dark : #333;
+$light-gray : #727272;
+// Font
+$font-family : Helvetica, Arial, sans-serif;
+
+*{@include box-sizing(border-box);}
+*:focus { outline: 0;}
+@mixin clearfix {
+  &:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both;
+    font-size: 14px;
+    overflow: hidden;
+    visibility: hidden;
+  }
+  @include has-layout;
+}
+body {
+    font-family: $font-family;
+    color: $dark;
+    margin: 150px 0;
+    background:#eaeaea;
+}
+
+header {
+    position: fixed;
+    @include clearfix;
+    background:$dark;
+    z-index: 3;
+    left: 0; top: 0; right: 0;
+    height: 65px; line-height: 65px;
+    @include box-shadow(rgba($dark, .2) 2px 2px 5px);
+    .main-logo {
+        float: left;
+        background:#FFF;
+        height: 65px; width: 65px;
+        text-align: center;
+        a {
+            display: inline-block;
+            font-size: 35px;
+            color: $dark;
+            text-decoration: none;
+            @include transition-duration(.2s);
+            @include transition-timing-function(ease-in-out);
+            &:hover {
+                color: $primary;
+            }
+        }
+    }
+    .main-menu {
+        float: right;
+        color: $light-gray;
+        a {
+            color: $light-gray;
+            text-decoration: none;
+            font-size: 14px;
+            @include transition-duration(.2s);
+            @include transition-timing-function(ease-in-out);
+            &:hover {color: $primary;}
+            &.active { color:#FFF; }
+            &.icns-param {
+                text-align: center;
+                display: inline-block;
+                background:$primary;
+                color: $dark;
+                width: 65px;
+                font-size: 25px;
+                margin-left: 1rem;
+                @include transition-duration(.2s);
+                @include transition-timing-function(ease-in-out);
+                &:hover {
+                    color: #FFF;
+                }
+            }
+        }
+    }
+}
+
+.menu-param  {
+    line-height: 1;
+    background:#FFF;
+    position: absolute;
+    top: 65px;right: -300px;
+    @include transition-property(right);
+    @include transition-duration(.2s);
+    @include transition-timing-function(cubic-bezier(.59,.03,0,1));
+
+    p {
+        background:$primary;
+        color: #FFF;
+        font-weight: bold;
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+    a {
+        display: block;
+        padding: 10px 20px;
+        border-bottom: 1px solid #EEE;
+        @include transition-duration(.2s);
+        @include transition-timing-function(ease-in-out);
+        &:hover {
+            background:shade(#FFF, 10%);
+            color: #333 !important;
+        }
+    }
+}
+.edit-tools {
+    position: absolute;
+    bottom: -30px;right: 0;
+    transition: bottom .2s ease-in-out;
+    a {
+        display: inline-block;
+         margin-left: -4px;
+        height: 30px; width: 30px;
+        line-height: 30px;
+        text-align: center;
+        background: $primary;
+        color: #FFF;
+        text-decoration: none;
+        opacity: .6;
+        @include transition-duration(.2s);
+        @include transition-timing-function(ease-in-out);
+        &:last-child {
+            background:#eb4c4c;
+        }
+        &:hover{
+            opacity: 1;
+        }
+    }
+}
+.email-container {
+    width: 650px;
+    margin: 0 auto;
+
+}
+.email-template {
+    @include box-shadow (rgba(0,0,0,.3) 0 0 3px)
+}
+.email-body { background:#FFF; padding: 30px 60px;}
+.link-mail {
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 5px;
+    a {
+        color: $primary;
+        text-decoration: none;
+        font-weight: bold;
+    }
+}
+.email-cover {
+    position: relative;
+    margin-bottom: -2px;
+    z-index: 2;
+    button {
+        position: absolute;
+        top: 63%; left: 50%;
+        margin-left: -68px;
+        background:shade($primary, 20%);
+        padding: 5px 20px;
+        color: #FFF;
+        border: none;
+        @include border-radius(3px);
+        cursor: pointer;
+        @include transition-duration(.2s);
+        @include transition-timing-function(ease-in-out);
+        &:hover {
+            background:shade($primary, 30%);
+        }
+    }
+}
+.email-title {
+    position: relative;
+    overflow: hidden;
+}
+.email-title:hover .edit-tools, .email-text-area:hover .edit-tools {
+    bottom: 0px;
+}
+.email-title h1{
+    text-align: center;
+    border:1px dashed #CCC;
+    padding: 20px 0;
+    font-size: 24px;
+    @include transition-duration(.2s);
+    @include transition-timing-function(ease-in-out);
+    &:hover {
+        border-color: $light-gray;
+    }
+}
+.email-text-area {
+    height: 300px;
+    position: relative;
+    border: 1px dashed #CCC;
+    margin-top: 25px;
+    @include border-radius (3px);
+    overflow: hidden;
+    @include transition-duration(.2s);
+    @include transition-timing-function(ease-in-out);
+    &:hover {
+        border-color: $light-gray;
+    }
+}
+
+.email-add-section {
+    margin-top: 25px;
+    select{
+       width: 491px;
+       padding: 5px;
+       font-size: 14px;
+       color: $light-gray;
+       border: 1px dashed #CCC;
+       height: 35px;
+       -webkit-appearance: none;
+       cursor:pointer;
+       background-image: url(../img/select.png);
+       background-repeat: no-repeat;
+       background-position: 98% center;
+        @include transition-duration(.2s);
+        @include transition-timing-function(ease-in-out);
+       &:focus, &:hover {
+        border-color: $light-gray;
+       }
+    }
+    input {
+        background:$primary;
+        border: none;
+        color: #fff;
+        height: 35px;
+        width: 35px;
+        font-size: 18px;
+        @include border-radius (3px);
+        cursor: pointer;
+        @include transition-duration(.2s);
+        @include transition-timing-function(ease-in-out);
+        &:hover, &:focus {
+            background:shade($primary, 20%);
+        }
+    }
+}
+
+.main-footer {
+    position: fixed;
+    left: 0; bottom: 0;right: 0;
+    height:50px; line-height: 50px;
+    background:#333;
+    @include box-shadow(rgba($dark, .2) -2px 2px 5px);
+    text-align: right;
+    z-index: 3;
+}
+.btn-primary {
+    display: inline-block;
+    background:$primary;
+    height: 35px;
+    font-size: 14px;
+    font-weight: lighter;
+    line-height: 35px;
+    margin: 5px 10px;
+    padding: 0 0 0 20px;
+    overflow: hidden;
+    color: #FFF;
+    text-decoration: none;
+    @include border-radius (3px);
+    i {
+        display: inline-block;
+        margin-left: 10px;
+        padding: 11px;
+        background:shade($primary, 30%);
+    }
+}
+
+
+// JAVASCRIPT ACTIONS
+.active-param {color: #FFF !important;}
+.show-menu { right: 0; }
